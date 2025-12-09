@@ -37,51 +37,51 @@ export default function Dashboard() {
         </div>
       </header>
 
-      <main className="px-5 py-6 space-y-5 max-w-md mx-auto">
-        {/* Main balance card */}
-        <div className="rounded-2xl p-6 bg-gradient-to-br from-primary to-primary/80 text-primary-foreground shadow-lg">
-          <p className="text-sm opacity-90 mb-1">Saldo disponível</p>
-          <p className="text-3xl font-bold tracking-tight mb-4">
-            {formatCurrency(balance)}
-          </p>
-          <div className="flex gap-6 text-sm">
-            <div>
-              <p className="opacity-75 text-xs">Receita</p>
-              <p className="font-semibold">{formatCurrency(monthlyIncome)}</p>
-            </div>
-            <div>
-              <p className="opacity-75 text-xs">Despesas</p>
-              <p className="font-semibold">{formatCurrency(currentExpenses)}</p>
+      <main className="px-5 py-6 max-w-6xl mx-auto">
+        {/* Top row: Balance card + Stats */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+          {/* Main balance card */}
+          <div className="rounded-2xl p-6 bg-gradient-to-br from-primary to-primary/80 text-primary-foreground shadow-lg md:col-span-2 lg:col-span-1">
+            <p className="text-sm opacity-90 mb-1">Saldo disponível</p>
+            <p className="text-2xl font-bold tracking-tight mb-3">
+              {formatCurrency(balance)}
+            </p>
+            <div className="flex gap-4 text-sm">
+              <div>
+                <p className="opacity-75 text-xs">Receita</p>
+                <p className="font-semibold text-sm">{formatCurrency(monthlyIncome)}</p>
+              </div>
+              <div>
+                <p className="opacity-75 text-xs">Despesas</p>
+                <p className="font-semibold text-sm">{formatCurrency(currentExpenses)}</p>
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* Stats row */}
-        <div className="flex gap-3 overflow-x-auto pb-1 -mx-5 px-5">
+          {/* Stats cards */}
           <StatCard
             title="Gastos do Mês"
             value={formatCurrency(currentExpenses)}
             icon={TrendingDown}
             variant="negative"
-            className="min-w-[140px] flex-1"
           />
           <StatCard
             title="Despesas Fixas"
             value={formatCurrency(getFixedExpenses())}
             icon={Pin}
-            className="min-w-[140px] flex-1"
           />
           <StatCard
             title="Variáveis"
             value={formatCurrency(getVariableExpenses())}
             icon={Wallet}
-            className="min-w-[140px] flex-1"
           />
         </div>
 
-        {/* Charts */}
-        <BalanceChart data={chartData} />
-        <ExpenseBarChart data={chartData} />
+        {/* Charts row */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <BalanceChart data={chartData} />
+          <ExpenseBarChart data={chartData} />
+        </div>
       </main>
     </div>
   );
