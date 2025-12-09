@@ -23,7 +23,7 @@ export function ExpenseList({ expenses, onDelete }: ExpenseListProps) {
 
   if (expenses.length === 0) {
     return (
-      <div className="text-center py-12 border-2 border-dashed border-border">
+      <div className="text-center py-12 rounded-xl border border-dashed border-border bg-card/50">
         <p className="text-muted-foreground">Nenhuma despesa registrada</p>
         <p className="text-sm text-muted-foreground mt-1">
           Adicione sua primeira despesa
@@ -33,37 +33,37 @@ export function ExpenseList({ expenses, onDelete }: ExpenseListProps) {
   }
 
   return (
-    <div className="space-y-3">
+    <div className="space-y-2">
       {sortedExpenses.map((expense) => (
         <div
           key={expense.id}
-          className="flex items-center justify-between p-4 border-2 border-border bg-card shadow-2xs"
+          className="flex items-center gap-3 p-4 rounded-xl bg-card border border-border/50 shadow-sm"
         >
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2">
-              <p className="font-semibold truncate">{expense.description}</p>
+              <p className="font-medium truncate text-sm">{expense.description}</p>
               {expense.isFixed && (
-                <Pin className="w-3 h-3 text-muted-foreground flex-shrink-0" />
+                <Pin className="w-3 h-3 text-primary flex-shrink-0" />
               )}
             </div>
             <div className="flex items-center gap-2 mt-1">
-              <span className="text-xs px-2 py-0.5 bg-secondary text-secondary-foreground">
+              <span className="text-xs px-2 py-0.5 rounded-full bg-secondary text-secondary-foreground">
                 {categoryLabels[expense.category]}
               </span>
               <span className="text-xs text-muted-foreground">
-                {format(parseISO(expense.date), "dd 'de' MMM", { locale: ptBR })}
+                {format(parseISO(expense.date), "dd MMM", { locale: ptBR })}
               </span>
             </div>
           </div>
-          <div className="flex items-center gap-3 ml-4">
-            <span className="font-mono font-bold text-destructive">
+          <div className="flex items-center gap-2">
+            <span className="font-semibold text-sm text-destructive">
               -{formatCurrency(expense.amount)}
             </span>
             <Button
               variant="ghost"
               size="icon"
               onClick={() => onDelete(expense.id)}
-              className="h-8 w-8"
+              className="h-8 w-8 text-muted-foreground hover:text-destructive"
             >
               <Trash2 className="w-4 h-4" />
             </Button>

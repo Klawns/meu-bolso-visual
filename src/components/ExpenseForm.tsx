@@ -53,9 +53,9 @@ export function ExpenseForm({ onSubmit }: ExpenseFormProps) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form onSubmit={handleSubmit} className="space-y-5">
       <div className="space-y-2">
-        <Label htmlFor="description" className="text-sm font-semibold uppercase">
+        <Label htmlFor="description" className="text-sm font-medium">
           Descrição
         </Label>
         <Input
@@ -63,12 +63,12 @@ export function ExpenseForm({ onSubmit }: ExpenseFormProps) {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           placeholder="Ex: Supermercado"
-          className="border-2"
+          className="h-11"
         />
       </div>
 
       <div className="space-y-2">
-        <Label htmlFor="amount" className="text-sm font-semibold uppercase">
+        <Label htmlFor="amount" className="text-sm font-medium">
           Valor (R$)
         </Label>
         <Input
@@ -79,48 +79,50 @@ export function ExpenseForm({ onSubmit }: ExpenseFormProps) {
           value={amount}
           onChange={(e) => setAmount(e.target.value)}
           placeholder="0,00"
-          className="border-2 font-mono text-lg"
+          className="h-11 text-lg font-medium"
         />
       </div>
 
-      <div className="space-y-2">
-        <Label htmlFor="category" className="text-sm font-semibold uppercase">
-          Categoria
-        </Label>
-        <Select value={category} onValueChange={(v) => setCategory(v as ExpenseCategory)}>
-          <SelectTrigger className="border-2">
-            <SelectValue />
-          </SelectTrigger>
-          <SelectContent>
-            {Object.entries(categoryLabels).map(([key, label]) => (
-              <SelectItem key={key} value={key}>
-                {label}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
+      <div className="grid grid-cols-2 gap-4">
+        <div className="space-y-2">
+          <Label htmlFor="category" className="text-sm font-medium">
+            Categoria
+          </Label>
+          <Select value={category} onValueChange={(v) => setCategory(v as ExpenseCategory)}>
+            <SelectTrigger className="h-11">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              {Object.entries(categoryLabels).map(([key, label]) => (
+                <SelectItem key={key} value={key}>
+                  {label}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+
+        <div className="space-y-2">
+          <Label htmlFor="date" className="text-sm font-medium">
+            Data
+          </Label>
+          <Input
+            id="date"
+            type="date"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+            className="h-11"
+          />
+        </div>
       </div>
 
-      <div className="space-y-2">
-        <Label htmlFor="date" className="text-sm font-semibold uppercase">
-          Data
-        </Label>
-        <Input
-          id="date"
-          type="date"
-          value={date}
-          onChange={(e) => setDate(e.target.value)}
-          className="border-2"
-        />
-      </div>
-
-      <div className="flex items-center justify-between p-4 border-2 border-border bg-secondary">
+      <div className="flex items-center justify-between p-4 rounded-xl bg-secondary/50">
         <div>
-          <Label htmlFor="isFixed" className="text-sm font-semibold">
+          <Label htmlFor="isFixed" className="text-sm font-medium">
             Despesa Fixa
           </Label>
           <p className="text-xs text-muted-foreground">
-            Repete todo mês (aluguel, internet, etc.)
+            Repete mensalmente
           </p>
         </div>
         <Switch
@@ -130,7 +132,7 @@ export function ExpenseForm({ onSubmit }: ExpenseFormProps) {
         />
       </div>
 
-      <Button type="submit" className="w-full h-12 text-base font-semibold shadow-sm">
+      <Button type="submit" className="w-full h-12 text-base font-medium">
         Adicionar Despesa
       </Button>
     </form>
