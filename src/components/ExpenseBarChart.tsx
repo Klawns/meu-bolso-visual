@@ -24,21 +24,23 @@ export function ExpenseBarChart({ data }: ExpenseBarChartProps) {
   };
 
   return (
-    <div className="border-2 border-border p-4 bg-card shadow-sm">
-      <h3 className="text-sm font-semibold uppercase mb-4">Receitas vs Despesas</h3>
-      <div className="h-48">
+    <div className="rounded-xl p-5 bg-card border border-border/50 shadow-sm">
+      <h3 className="text-sm font-semibold text-foreground mb-4">Receitas vs Despesas</h3>
+      <div className="h-44">
         <ResponsiveContainer width="100%" height="100%">
-          <BarChart data={data} margin={{ top: 5, right: 5, left: -20, bottom: 5 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+          <BarChart data={data} margin={{ top: 5, right: 5, left: -20, bottom: 5 }} barGap={4}>
+            <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" opacity={0.5} vertical={false} />
             <XAxis 
               dataKey="month" 
-              tick={{ fontSize: 12 }}
-              stroke="hsl(var(--muted-foreground))"
+              tick={{ fontSize: 11, fill: 'hsl(var(--muted-foreground))' }}
+              axisLine={false}
+              tickLine={false}
             />
             <YAxis 
               tickFormatter={formatCurrency}
-              tick={{ fontSize: 10 }}
-              stroke="hsl(var(--muted-foreground))"
+              tick={{ fontSize: 10, fill: 'hsl(var(--muted-foreground))' }}
+              axisLine={false}
+              tickLine={false}
             />
             <Tooltip
               formatter={(value: number, name: string) => [
@@ -46,16 +48,19 @@ export function ExpenseBarChart({ data }: ExpenseBarChartProps) {
                 name === 'income' ? 'Receita' : 'Despesas',
               ]}
               contentStyle={{
-                border: '2px solid hsl(var(--border))',
-                background: 'hsl(var(--background))',
-                boxShadow: 'var(--shadow-sm)',
+                borderRadius: '8px',
+                border: '1px solid hsl(var(--border))',
+                background: 'hsl(var(--card))',
+                boxShadow: 'var(--shadow-md)',
+                fontSize: '12px',
               }}
             />
             <Legend 
               formatter={(value) => value === 'income' ? 'Receita' : 'Despesas'}
+              wrapperStyle={{ fontSize: '12px' }}
             />
-            <Bar dataKey="income" fill="hsl(var(--chart-2))" />
-            <Bar dataKey="expenses" fill="hsl(var(--chart-1))" />
+            <Bar dataKey="income" fill="hsl(var(--chart-2))" radius={[4, 4, 0, 0]} />
+            <Bar dataKey="expenses" fill="hsl(var(--chart-3))" radius={[4, 4, 0, 0]} />
           </BarChart>
         </ResponsiveContainer>
       </div>

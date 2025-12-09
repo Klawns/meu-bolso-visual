@@ -14,19 +14,19 @@ export default function AddExpense() {
   };
 
   return (
-    <div className="min-h-screen pb-20">
-      <header className="sticky top-0 bg-background border-b-2 border-border z-40">
-        <div className="px-4 py-4">
-          <h1 className="text-xl font-bold uppercase tracking-tight">
+    <div className="min-h-screen pb-20 bg-background">
+      <header className="sticky top-0 bg-background/80 backdrop-blur-lg z-40 border-b border-border/50">
+        <div className="px-5 py-4 max-w-md mx-auto">
+          <h1 className="text-lg font-semibold text-foreground">
             Nova Despesa
           </h1>
           <p className="text-sm text-muted-foreground">
-            Registre uma nova despesa
+            Registre um novo gasto
           </p>
         </div>
       </header>
 
-      <main className="px-4 py-6 max-w-md mx-auto">
+      <main className="px-5 py-5 max-w-md mx-auto">
         <ExpenseForm onSubmit={handleSubmit} />
       </main>
     </div>
