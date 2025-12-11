@@ -8,7 +8,7 @@ import Expenses from "./pages/Expenses";
 import AddExpense from "./pages/AddExpense";
 import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
-import { BottomNav } from "./components/BottomNav";
+import { Layout } from "./components/Layout";
 
 const queryClient = new QueryClient();
 
@@ -20,9 +20,9 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/expenses" element={<><Expenses /><BottomNav /></>} />
-          <Route path="/add" element={<><AddExpense /><BottomNav /></>} />
-          <Route path="/settings" element={<><Settings /><BottomNav /></>} />
+          <Route path="/expenses" element={<Layout><Expenses /></Layout>} />
+          <Route path="/add" element={<Layout><AddExpense /></Layout>} />
+          <Route path="/settings" element={<Layout><Settings /></Layout>} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
