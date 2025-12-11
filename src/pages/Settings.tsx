@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import { useFinanceData } from '@/hooks/useFinanceData';
 import { toast } from 'sonner';
 import { CircleDollarSign, Trash2 } from 'lucide-react';
@@ -32,55 +31,49 @@ export default function Settings() {
   };
 
   return (
-    <div className="min-h-screen pb-20 bg-background">
-      <header className="sticky top-0 bg-background/80 backdrop-blur-lg z-40 border-b border-border/50">
-        <div className="px-5 py-4 max-w-md mx-auto">
-          <h1 className="text-lg font-semibold text-foreground">
-            Configurações
-          </h1>
-          <p className="text-sm text-muted-foreground">
-            Personalize o app
-          </p>
-        </div>
-      </header>
+    <main className="px-6 py-8 max-w-6xl mx-auto">
+      <div className="mb-6">
+        <h2 className="text-2xl font-semibold text-foreground mb-1">Configurações</h2>
+        <p className="text-base text-muted-foreground">Personalize o app</p>
+      </div>
 
-      <main className="px-5 py-5 max-w-md mx-auto space-y-5">
-        <section className="rounded-xl border border-border/50 bg-card p-5 shadow-sm">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="p-2 rounded-lg bg-primary/10">
-              <CircleDollarSign className="w-5 h-5 text-primary" />
+      <div className="max-w-lg space-y-6">
+        <section className="rounded-2xl border border-border/50 bg-card p-6 shadow-sm">
+          <div className="flex items-center gap-4 mb-5">
+            <div className="p-3 rounded-xl bg-primary/10">
+              <CircleDollarSign className="w-6 h-6 text-primary" />
             </div>
             <div>
-              <h2 className="font-medium">Renda Mensal</h2>
-              <p className="text-xs text-muted-foreground">
+              <h3 className="text-lg font-medium">Renda Mensal</h3>
+              <p className="text-sm text-muted-foreground">
                 Defina sua receita mensal
               </p>
             </div>
           </div>
-          <div className="flex gap-3">
+          <div className="flex gap-4">
             <Input
               type="number"
               step="0.01"
               min="0"
               value={incomeInput}
               onChange={(e) => setIncomeInput(e.target.value)}
-              className="flex-1 h-11"
+              className="flex-1 h-12 text-base"
               placeholder="0,00"
             />
-            <Button onClick={handleSaveIncome} className="h-11 px-6">
+            <Button onClick={handleSaveIncome} className="h-12 px-8 text-base">
               Salvar
             </Button>
           </div>
         </section>
 
-        <section className="rounded-xl border border-destructive/30 bg-destructive/5 p-5">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="p-2 rounded-lg bg-destructive/10">
-              <Trash2 className="w-5 h-5 text-destructive" />
+        <section className="rounded-2xl border border-destructive/30 bg-destructive/5 p-6">
+          <div className="flex items-center gap-4 mb-5">
+            <div className="p-3 rounded-xl bg-destructive/10">
+              <Trash2 className="w-6 h-6 text-destructive" />
             </div>
             <div>
-              <h2 className="font-medium text-destructive">Apagar Dados</h2>
-              <p className="text-xs text-muted-foreground">
+              <h3 className="text-lg font-medium text-destructive">Apagar Dados</h3>
+              <p className="text-sm text-muted-foreground">
                 Esta ação não pode ser desfeita
               </p>
             </div>
@@ -88,12 +81,12 @@ export default function Settings() {
           <Button
             variant="destructive"
             onClick={handleClearData}
-            className="w-full h-11"
+            className="w-full h-12 text-base"
           >
             Apagar Todos os Dados
           </Button>
         </section>
-      </main>
-    </div>
+      </div>
+    </main>
   );
 }

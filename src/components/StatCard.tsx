@@ -14,19 +14,19 @@ export function StatCard({ title, value, icon: Icon, trend, variant = 'default',
   return (
     <div
       className={cn(
-        'rounded-xl p-4 bg-card border border-border/50 shadow-sm transition-all hover:shadow-md',
+        'rounded-2xl p-6 bg-card border border-border/50 shadow-sm transition-all hover:shadow-md',
         className
       )}
     >
-      <div className="flex items-center justify-between mb-3">
+      <div className="flex items-center justify-between mb-4">
         <div className={cn(
-          'p-2 rounded-lg',
+          'p-3 rounded-xl',
           variant === 'positive' && 'bg-[hsl(var(--success))]/10',
           variant === 'negative' && 'bg-destructive/10',
           variant === 'default' && 'bg-primary/10'
         )}>
           <Icon className={cn(
-            'w-4 h-4',
+            'w-5 h-5',
             variant === 'positive' && 'text-[hsl(var(--success))]',
             variant === 'negative' && 'text-destructive',
             variant === 'default' && 'text-primary'
@@ -34,7 +34,7 @@ export function StatCard({ title, value, icon: Icon, trend, variant = 'default',
         </div>
         {trend && (
           <span className={cn(
-            'text-xs font-medium px-2 py-0.5 rounded-full',
+            'text-sm font-medium px-3 py-1 rounded-full',
             variant === 'positive' && 'bg-[hsl(var(--success))]/10 text-[hsl(var(--success))]',
             variant === 'negative' && 'bg-destructive/10 text-destructive'
           )}>
@@ -42,10 +42,10 @@ export function StatCard({ title, value, icon: Icon, trend, variant = 'default',
           </span>
         )}
       </div>
-      <p className="text-xs font-medium text-muted-foreground mb-1">
+      <p className="text-sm font-medium text-muted-foreground mb-2">
         {title}
       </p>
-      <p className="text-xl font-semibold tracking-tight">{value}</p>
+      <p className="text-2xl font-semibold tracking-tight">{value}</p>
     </div>
   );
 }

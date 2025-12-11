@@ -16,49 +16,39 @@ export default function Expenses() {
   };
 
   const totalAll = expenses.reduce((sum, e) => sum + e.amount, 0);
-  const totalFixed = fixedExpenses.reduce((sum, e) => sum + e.amount, 0);
-  const totalVariable = variableExpenses.reduce((sum, e) => sum + e.amount, 0);
 
   return (
-    <div className="min-h-screen pb-20 bg-background">
-      <header className="sticky top-0 bg-background/80 backdrop-blur-lg z-40 border-b border-border/50">
-        <div className="px-5 py-4 max-w-md mx-auto">
-          <h1 className="text-lg font-semibold text-foreground">
-            Despesas
-          </h1>
-          <p className="text-sm text-muted-foreground">
-            Total: {formatCurrency(totalAll)}
-          </p>
-        </div>
-      </header>
+    <main className="px-6 py-8 max-w-6xl mx-auto">
+      <div className="mb-6">
+        <h2 className="text-2xl font-semibold text-foreground mb-1">Despesas</h2>
+        <p className="text-base text-muted-foreground">Total: {formatCurrency(totalAll)}</p>
+      </div>
 
-      <main className="px-5 py-5 max-w-md mx-auto">
-        <Tabs defaultValue="all" className="w-full">
-          <TabsList className="grid w-full grid-cols-3 mb-5 h-10 p-1">
-            <TabsTrigger value="all" className="text-xs">
-              Todas ({expenses.length})
-            </TabsTrigger>
-            <TabsTrigger value="fixed" className="text-xs">
-              Fixas ({fixedExpenses.length})
-            </TabsTrigger>
-            <TabsTrigger value="variable" className="text-xs">
-              Variáveis ({variableExpenses.length})
-            </TabsTrigger>
-          </TabsList>
-          
-          <TabsContent value="all">
-            <ExpenseList expenses={expenses} onDelete={deleteExpense} />
-          </TabsContent>
-          
-          <TabsContent value="fixed">
-            <ExpenseList expenses={fixedExpenses} onDelete={deleteExpense} />
-          </TabsContent>
-          
-          <TabsContent value="variable">
-            <ExpenseList expenses={variableExpenses} onDelete={deleteExpense} />
-          </TabsContent>
-        </Tabs>
-      </main>
-    </div>
+      <Tabs defaultValue="all" className="w-full">
+        <TabsList className="grid w-full grid-cols-3 mb-6 h-12 p-1">
+          <TabsTrigger value="all" className="text-sm">
+            Todas ({expenses.length})
+          </TabsTrigger>
+          <TabsTrigger value="fixed" className="text-sm">
+            Fixas ({fixedExpenses.length})
+          </TabsTrigger>
+          <TabsTrigger value="variable" className="text-sm">
+            Variáveis ({variableExpenses.length})
+          </TabsTrigger>
+        </TabsList>
+        
+        <TabsContent value="all">
+          <ExpenseList expenses={expenses} onDelete={deleteExpense} />
+        </TabsContent>
+        
+        <TabsContent value="fixed">
+          <ExpenseList expenses={fixedExpenses} onDelete={deleteExpense} />
+        </TabsContent>
+        
+        <TabsContent value="variable">
+          <ExpenseList expenses={variableExpenses} onDelete={deleteExpense} />
+        </TabsContent>
+      </Tabs>
+    </main>
   );
 }
