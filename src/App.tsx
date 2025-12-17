@@ -8,6 +8,7 @@ import Expenses from "./pages/Expenses";
 import AddExpense from "./pages/AddExpense";
 import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
+import Auth from "./pages/Auth";
 import { Layout } from "./components/Layout";
 
 const queryClient = new QueryClient();
@@ -19,6 +20,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
+          <Route path="/auth" element={<Auth />} />
           <Route path="/" element={<Index />} />
           <Route path="/expenses" element={<Layout><Expenses /></Layout>} />
           <Route path="/add" element={<Layout><AddExpense /></Layout>} />
