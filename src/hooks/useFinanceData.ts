@@ -9,17 +9,27 @@ const INCOME_KEY = 'finance_income';
 export function useFinanceData() {
   const [expenses, setExpenses] = useState<Expense[]>([]);
   const [monthlyIncome, setMonthlyIncome] = useState<number>(0);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    const savedExpenses = localStorage.getItem(STORAGE_KEY);
-    const savedIncome = localStorage.getItem(INCOME_KEY);
+    const loadData = async () => {
+      setIsLoading(true);
+      // Simula um pequeno delay para mostrar o loading
+      await new Promise(resolve => setTimeout(resolve, 500));
+      
+      const savedExpenses = localStorage.getItem(STORAGE_KEY);
+      const savedIncome = localStorage.getItem(INCOME_KEY);
+      
+      if (savedExpenses) {
+        setExpenses(JSON.parse(savedExpenses));
+      }
+      if (savedIncome) {
+        setMonthlyIncome(JSON.parse(savedIncome));
+      }
+      setIsLoading(false);
+    };
     
-    if (savedExpenses) {
-      setExpenses(JSON.parse(savedExpenses));
-    }
-    if (savedIncome) {
-      setMonthlyIncome(JSON.parse(savedIncome));
-    }
+    loadData();
   }, []);
 
   const saveExpenses = (newExpenses: Expense[]) => {
@@ -107,6 +117,7 @@ export function useFinanceData() {
   return {
     expenses,
     monthlyIncome,
+    isLoading,
     setMonthlyIncome: saveIncome,
     addExpense,
     deleteExpense,
