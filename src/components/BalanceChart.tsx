@@ -23,9 +23,9 @@ export function BalanceChart({ data }: BalanceChartProps) {
   };
 
   return (
-    <div className="rounded-xl p-5 bg-card border border-border/50 shadow-sm">
-      <h3 className="text-sm font-semibold text-foreground mb-4">Evolução do Saldo</h3>
-      <div className="h-44">
+    <div className="rounded-2xl p-6 bg-card border border-border shadow-sm h-full">
+      <h3 className="text-lg font-semibold text-card-foreground mb-4">Evolução do Saldo</h3>
+      <div className="h-[280px]">
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart data={data} margin={{ top: 5, right: 5, left: -20, bottom: 5 }}>
             <defs>
