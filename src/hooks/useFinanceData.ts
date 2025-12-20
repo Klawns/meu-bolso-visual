@@ -15,7 +15,7 @@ export function useFinanceData() {
     const loadData = async () => {
       setIsLoading(true);
       // Simula um pequeno delay para mostrar o loading
-      await new Promise(resolve => setTimeout(resolve, 600000));
+      await new Promise(resolve => setTimeout(resolve, 5000));
       
       const savedExpenses = localStorage.getItem(STORAGE_KEY);
       const savedIncome = localStorage.getItem(INCOME_KEY);
