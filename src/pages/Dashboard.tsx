@@ -2,6 +2,7 @@ import { useFinanceData } from '@/hooks/useFinanceData';
 import { StatCard } from '@/components/StatCard';
 import { BalanceChart } from '@/components/BalanceChart';
 import { ExpenseBarChart } from '@/components/ExpenseBarChart';
+import { CategoryPieChart } from '@/components/CategoryPieChart';
 import { BalanceCardSkeleton, StatCardSkeleton, ChartSkeleton } from '@/components/LoadingSkeletons';
 import { Wallet, TrendingDown, Pin } from 'lucide-react';
 
@@ -13,6 +14,7 @@ export default function Dashboard() {
     getFixedExpenses,
     getVariableExpenses,
     getMonthlyChartData,
+    getCategoryData,
   } = useFinanceData();
 
   const formatCurrency = (value: number) => {
@@ -25,6 +27,7 @@ export default function Dashboard() {
   const currentExpenses = getCurrentMonthExpenses();
   const balance = monthlyIncome - currentExpenses;
   const chartData = getMonthlyChartData();
+  const categoryData = getCategoryData();
 
   return (
     <main className="px-6 py-8 max-w-6xl mx-auto">
@@ -79,9 +82,10 @@ export default function Dashboard() {
       </div>
 
       {/* Charts row */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
         {isLoading ? (
           <>
+            <ChartSkeleton />
             <ChartSkeleton />
             <ChartSkeleton />
           </>
@@ -89,6 +93,7 @@ export default function Dashboard() {
           <>
             <BalanceChart data={chartData} />
             <ExpenseBarChart data={chartData} />
+            <CategoryPieChart data={categoryData} />
           </>
         )}
       </div>
